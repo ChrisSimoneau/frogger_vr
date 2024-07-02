@@ -1,8 +1,3 @@
-/* CSCI 4262 Assignment 3,
- * Author: Evan Suma Rosenberg
- * License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
- */ 
-
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
 import { Color3, Vector3 } from "@babylonjs/core/Maths/math";
@@ -52,7 +47,7 @@ class Game
         this.backgroundMusic = new Sound("backgroundMusic", "assets/music.mp3", this.scene, null, {
             loop: true,
             autoplay: true,
-            volume: 0.5
+            volume: 0.35
         });
     }
 
