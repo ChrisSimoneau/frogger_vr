@@ -10,13 +10,13 @@ import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera";
 import { PointerEventTypes, PointerInfo } from "@babylonjs/core/Events/pointerEvents";
 import { WebXRDefaultExperience, WebXRManagedOutputCanvasOptions } from "@babylonjs/core/XR";
 import { WebXRInputSource } from "@babylonjs/core/XR/webXRInputSource";
+import { Sound } from "@babylonjs/core/Audio/sound";
 
 // Side effects
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
 import "@babylonjs/core/Helpers/sceneHelpers";
 import "@babylonjs/inspector"
 import { AssetsManager, DirectionalLight, HemisphericLight, HighlightLayer, Mesh, MeshBuilder, SceneLoader, TransformNode } from "@babylonjs/core";
-
 
 // Note: The structure has changed since previous assignments because we need to handle the 
 // async methods used for setting up XR. In particular, "createDefaultXRExperienceAsync" 
@@ -29,9 +29,10 @@ class Game
     private canvas: HTMLCanvasElement;
     private engine: Engine;
     private scene: Scene;
-    private currSelectedItem: Mesh | undefined
+    private currSelectedItem: Mesh | undefined;
     private minPosX: number;
     private maxPosX: number;
+    private backgroundMusic: Sound; // Add a property for the background music
 
     constructor()
     {
@@ -46,6 +47,13 @@ class Game
 
         this.minPosX = -35; // Define minimum x position
         this.maxPosX = 35;  // Define maximum x position
+
+        // Create the background music and set it to loop
+        this.backgroundMusic = new Sound("backgroundMusic", "assets/music.mp3", this.scene, null, {
+            loop: true,
+            autoplay: true,
+            volume: 0.5
+        });
     }
 
     start() : void
@@ -136,7 +144,7 @@ class Game
 
         assetsManager.load();
         assetsManager.onFinish = (tasks) => {
-            this.scene.debugLayer.show();
+            //this.scene.debugLayer.show();
         };
         
     }   
