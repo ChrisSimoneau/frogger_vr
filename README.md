@@ -1,4 +1,5 @@
 # Frogger_VR
+Project demo is available at https://web.cs.dal.ca/~simoneau/froggervr/
 
 ## REFERENECES:
 Assets used:
